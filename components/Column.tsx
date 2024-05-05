@@ -1,9 +1,10 @@
 import { Card } from "./Card";
 import { useState } from "react";
+import { AddCard } from "./AddCard";
 import { TColumnProps } from "@/types";
 import { DropIndicator } from "./DropIndicator";
 
-export const Column = ({ title, headingColor, cards, column }: TColumnProps) => {
+export const Column = ({ title, headingColor, cards, column, setCards }: TColumnProps) => {
   const [active, setActive] = useState(false);
   const filteredCards = cards?.filter(card => card?.column === column);
   return (
@@ -18,6 +19,7 @@ export const Column = ({ title, headingColor, cards, column }: TColumnProps) => 
       >
         {filteredCards?.map(card => <Card key={card?.id} {...card} />)}
         <DropIndicator beforeId="-1" column={column} />
+        <AddCard column={column} setCards={setCards}/>
       </div>
     </div>
   );
