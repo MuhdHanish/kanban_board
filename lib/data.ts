@@ -16,18 +16,18 @@ export const DEFAULT_CARDS: TCard[] = [
   { title: "Postmortem for outage", id: "6", column: "todo" },
   { title: "Sync with product on Q3 roadmap", id: "7", column: "todo" },
 
-  // DOING
+  // IN PROGRESS
   {
     title: "Refactor context providers to use Zustand",
     id: "8",
-    column: "doing",
+    column: "in progress",
   },
-  { title: "Add logging to daily CRON", id: "9", column: "doing" },
+  { title: "Add logging to daily CRON", id: "9", column: "in progress" },
   
-  // DONE
+  // COMPLETED
   {
     title: "Set up DD dashboards for Lambda listener",
     id: "10",
-    column: "done",
+    column: "completed",
   },
 ];
