@@ -76,9 +76,9 @@ export const Column = ({ title, headingColor, cards, column, setCards }: TColumn
     }
   };
   return (
-    <div className="flex-1 mb-2.5 md:mb-0">
+    <div className="flex-1 mb-2.5 lg:mb-0">
       <div className="mb-3 flex items-center justify-between">
-        <h3 className={`font-medium ${headingColor}`}>{title}</h3>
+        <h3 className={`font-medium ${headingColor} uppercase`}>{title}</h3>
         <span className="text-sm text-neutral-400">{filteredCards?.length}</span>
       </div>
       <div
@@ -88,7 +88,7 @@ export const Column = ({ title, headingColor, cards, column, setCards }: TColumn
         className={`h-full w-full transition-colors 
         ${active ? "bg-neutral-800/50" : "bg-neutral-800/0"}`}
       >
-        {filteredCards?.map(card => <Card key={card?.id} card={card} hanldeDragStart={hanldeDragStart} />)}
+        {filteredCards?.map(card => <Card key={card?.id} card={card} hanldeDragStart={hanldeDragStart} setCards={setCards}/>)}
         <DropIndicator beforeId="-1" column={column} />
         <AddCard column={column} setCards={setCards} />
       </div>
