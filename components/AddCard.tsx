@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { FiPlus } from "react-icons/fi";
 import { FormEvent, useState } from "react";
 import { TAddCardProps, TCard } from "@/types";
@@ -19,7 +20,9 @@ export const AddCard = ({ column, setCards }: TAddCardProps) => {
   return (
     <>
       {adding ? (
-        <form onSubmit={handleSubmit}>
+        <motion.form
+          layout
+          onSubmit={handleSubmit}>
           <textarea
             onChange={(event) => setTitle(event.target.value)}
             autoFocus
@@ -41,15 +44,16 @@ export const AddCard = ({ column, setCards }: TAddCardProps) => {
               <FiPlus />
             </button>
           </div>
-        </form>
+        </motion.form>
       ) : (
-        <button
+        <motion.button
+          layout
           onClick={() => setAdding(true)}
           className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50 outline-none"
         >
           <span>Add card</span>
           <FiPlus />
-        </button>
+        </motion.button>
       )}
     </>
   );
