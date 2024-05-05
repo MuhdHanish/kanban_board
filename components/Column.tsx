@@ -76,7 +76,7 @@ export const Column = ({ title, headingColor, cards, column, setCards }: TColumn
     }
   };
   return (
-    <div className="w-56 shrink-0">
+    <div className="flex-1 mb-2.5 md:mb-0">
       <div className="mb-3 flex items-center justify-between">
         <h3 className={`font-medium ${headingColor}`}>{title}</h3>
         <span className="text-sm text-neutral-400">{filteredCards?.length}</span>

@@ -14,7 +14,7 @@ export const Board = () => {
     setCards(cardsData ? JSON.parse(cardsData) : []);
     setHasChecked(true);
    }, []);
-  return <div className="flex h-full w-full gap-3 overflow-auto p-12">
+  return <div className="flex flex-col h-full w-full p-4 md:flex-row md:gap-3 md:overflow-auto md:p-12">
     <Column
       title="Backlog"
       column="backlog"
