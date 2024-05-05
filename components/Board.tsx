@@ -1,10 +1,10 @@
-"use client";
 import { TCard } from "@/types";
 import { useState } from "react";
-import { Column } from "@/components";
+import { Column } from "./Column";
+import { DEFAULT_CARDS } from "@/lib/data";
 
 export const Board = () => {
-  const [cards, setCards] = useState<TCard[]>([]);
+  const [cards, setCards] = useState<TCard[]>(DEFAULT_CARDS);
   return <div className="flex h-full w-full gap-3 overflow-auto p-12">
     <Column
       title="Backlog"
