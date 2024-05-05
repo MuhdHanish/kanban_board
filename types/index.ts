@@ -1,7 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 
-export type TCard = {};
-
 export type TColumnProps = {
   title: string;
   headingColor: string;
@@ -9,3 +7,15 @@ export type TColumnProps = {
   cards: TCard[];
   setCards: Dispatch<SetStateAction<TCard[]>>;
 };
+
+export type TCard = {
+  id: string;
+  title: string;
+} & Pick<TColumnProps, "column">;
+
+
+type ExtractIdType<T> = T extends { id: infer U } ? U : never;
+
+export type TDropsIndicatorProps = {
+  beforeId: ExtractIdType<TCard>;
+} & Pick<TColumnProps, "column">;
