@@ -21,3 +21,5 @@ export type TDropsIndicatorProps = {
 } & Pick<TColumnProps, "column">;
 
 export type TBurnBarrelProps = Pick<TColumnProps, "setCards">;
+
+export type TAddCardProps = Pick<TColumnProps, "setCards" | "column">;
