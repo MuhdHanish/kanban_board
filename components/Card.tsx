@@ -13,7 +13,7 @@ export const Card = ({ card, hanldeDragStart }: TCardProps) => {
         draggable
         onDragStart={(event) => hanldeDragStart(event, card)}
         className="cursor-grab rounded  border border-neutral-700 bg-neutral-800 p-3 active:cursor-grabbing">
-        <p className="text-sm text-neutral-100">{title}</p>
+        <p className="text-sm text-neutral-100 break-words">{title}</p>
       </motion.div>
     </>
   );
