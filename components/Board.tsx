@@ -2,6 +2,7 @@ import { TCard } from "@/types";
 import { useState } from "react";
 import { Column } from "./Column";
 import { DEFAULT_CARDS } from "@/lib/data";
+import { BurnBarrel } from "./BurnBarrel";
 
 export const Board = () => {
   const [cards, setCards] = useState<TCard[]>(DEFAULT_CARDS);
@@ -34,5 +35,6 @@ export const Board = () => {
       cards={cards}
       setCards={setCards}
     />
+    <BurnBarrel setCards={setCards}/>
   </div>;
 };
