@@ -20,9 +20,9 @@ export const DEFAULT_CARDS: TCard[] = [
   {
     title: "Refactor context providers to use Zustand",
     id: "8",
-    column: "in progress",
+    column: "in-progress",
   },
-  { title: "Add logging to daily CRON", id: "9", column: "in progress" },
+  { title: "Add logging to daily CRON", id: "9", column: "in-progress" },
   
   // COMPLETED
   {
