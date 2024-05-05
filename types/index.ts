@@ -1,4 +1,4 @@
-import { Dispatch, DragEvent, SetStateAction } from "react";
+import { Dispatch, SetStateAction, MouseEvent, TouchEvent, PointerEvent, DragEvent } from "react";
 
 export type TColumnProps = {
   title: string;
@@ -15,7 +15,7 @@ export type TCard = {
 
 export type TCardProps = {
   card: TCard;
-  hanldeDragStart: (event: DragEvent, card: TCard) => void;
+  hanldeDragStart: (event: any, card: TCard) => void;
 };
 
 
