@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, MouseEvent, TouchEvent, PointerEvent, DragEve
 export type TColumnProps = {
   title: string;
   headingColor: string;
-  column: "backlog" | "todo" | "in-progress" | "completed";
+  column: "backlog" | "todo" | "active" | "completed";
   cards: TCard[];
   setCards: Dispatch<SetStateAction<TCard[]>>;
 };
@@ -16,7 +16,7 @@ export type TCard = {
 export type TCardProps = {
   card: TCard;
   hanldeDragStart: (event: any, card: TCard) => void;
-};
+} & Pick<TColumnProps, "setCards">;
 
 
 type ExtractIdType<T> = T extends { id: infer U } ? U : never;
