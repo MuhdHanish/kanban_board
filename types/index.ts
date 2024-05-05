@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction, MouseEvent, TouchEvent, PointerEvent, DragEve
 export type TColumnProps = {
   title: string;
   headingColor: string;
-  column: string;
+  column: "backlog" | "todo" | "in-progress" | "completed";
   cards: TCard[];
   setCards: Dispatch<SetStateAction<TCard[]>>;
 };

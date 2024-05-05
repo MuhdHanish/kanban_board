@@ -23,7 +23,7 @@ export const Board = () => {
     />
     <Column
       title="In Progress"
-      column="in progress"
+      column="in-progress"
       headingColor="text-blue-200"
       cards={cards}
       setCards={setCards}
