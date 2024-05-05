@@ -4,14 +4,14 @@ import { BsTrash2, BsFire } from "react-icons/bs";
 
 export const BurnBarrel = ({ setCards }: TBurnBarrelProps) => {
   const [active, setActive] = useState(false);
-  const handleDragOver = (event: DragEvent) => {
+  const handleDragOver = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     setActive(true);
   };
   const handleDragLeave = () => {
     setActive(false);
   };
-  const handleDrop = (event: DragEvent) => { 
+  const handleDrop = (event: { dataTransfer: { getData: (arg0: string) => any; }; }) => { 
     const cardId = event.dataTransfer.getData("cardId");
     setCards((prev) => prev?.filter(card => card?.id !== cardId));
     setActive(false);
