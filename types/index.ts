@@ -19,3 +19,5 @@ type ExtractIdType<T> = T extends { id: infer U } ? U : never;
 export type TDropsIndicatorProps = {
   beforeId: ExtractIdType<TCard>;
 } & Pick<TColumnProps, "column">;
+
+export type TBurnBarrelProps = Pick<TColumnProps, "setCards">;
