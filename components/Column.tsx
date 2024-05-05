@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 import { AddCard } from "./AddCard";
-import { DragEvent, useState } from "react";
+import { useState } from "react";
 import { TCard, TColumnProps } from "@/types";
 import { DropIndicator } from "./DropIndicator";
 
@@ -8,7 +8,7 @@ export const Column = ({ title, headingColor, cards, column, setCards }: TColumn
   const [active, setActive] = useState(false);
   const filteredCards = cards?.filter(card => card?.column === column);
 
-  const hanldeDragStart = (event: DragEvent, card: TCard) => {
+  const hanldeDragStart = (event: { dataTransfer: { setData: (arg0: string, arg1: string) => void; }; }, card: TCard) => {
     event.dataTransfer.setData("cardId", card?.id);
   };
   return (
