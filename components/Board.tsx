@@ -1,11 +1,19 @@
 import { TCard } from "@/types";
-import { useState } from "react";
 import { Column } from "./Column";
-import { DEFAULT_CARDS } from "@/lib/data";
 import { BurnBarrel } from "./BurnBarrel";
+import { useEffect, useState } from "react";
 
 export const Board = () => {
-  const [cards, setCards] = useState<TCard[]>(DEFAULT_CARDS);
+  const [cards, setCards] = useState<TCard[]>([]);
+  const [haschecked, setHasChecked] = useState(false);
+  useEffect(() => {
+    haschecked && localStorage.setItem("kanban_board_cards", JSON.stringify(cards));
+  }, [cards, haschecked]);
+  useEffect(() => { 
+    const cardsData = localStorage.getItem("kanban_board_cards");
+    setCards(cardsData ? JSON.parse(cardsData) : []);
+    setHasChecked(true);
+   }, []);
   return <div className="flex h-full w-full gap-3 overflow-auto p-12">
     <Column
       title="Backlog"
