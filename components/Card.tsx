@@ -1,24 +1,28 @@
-import { TCardProps, TColumnProps } from "@/types";
 import { motion } from "framer-motion";
 import { DropIndicator } from "./DropIndicator";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { TCardProps, TColumnProps } from "@/types";
+import { useEffect, useRef, useState } from "react";
 import { VscArrowSmallRight } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+
+const columns: Omit<TColumnProps, "cards" | "setCards">[] = [
+  { title: "Backlog", column: "backlog", headingColor: "red" },
+  { title: "Todo", column: "todo", headingColor: "yellow" },
+  { title: "Active", column: "active", headingColor: "blue" },
+  { title: "Completed", column: "completed", headingColor: "emerald" },
+];
 
 export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
   const { id, title, column } = card;
   const [menuOpen, setMenuOpen] = useState(false);
   const [toMoveOpen, setToMoveOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  const buttons: Omit<TColumnProps, "cards" | "setCards">[] = useMemo(()=>[
-    { title: 'Backlog', column: 'backlog', headingColor: 'red' },
-    { title: 'Todo', column: 'todo', headingColor: 'yellow' },
-    { title: 'Active', column: 'active', headingColor: 'blue' },
-    { title: 'Completed', column: 'completed', headingColor: 'emerald' },
-  ],[]);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (cardRef.current && !cardRef.current?.contains(event?.target as Node)) {
+      if (
+        cardRef.current &&
+        !cardRef.current?.contains(event?.target as Node)
+      ) {
         setMenuOpen(false);
         setToMoveOpen(false);
       }
@@ -31,12 +35,12 @@ export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
   const handleDelete = () => {
     const confirm = window.confirm(`Are you sure you want delete this ?`);
     if (!confirm) return;
-    setCards(prev => prev?.filter(card => card?.id !== id));
-  }
+    setCards((prev) => prev?.filter((card) => card?.id !== id));
+  };
   const handleMoveOpen = () => {
     setMenuOpen(false);
     setToMoveOpen(true);
-  }
+  };
   const handleMove = (column: "backlog" | "todo" | "active" | "completed") => {
     const newCard = { ...card, column };
     setCards((prev) => prev?.filter((card) => card?.id !== id));
@@ -78,20 +82,19 @@ export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
             </button>
           </div>
         )}
-        {buttons && buttons?.length > 0 && toMoveOpen && (
+        {columns && columns.length > 0 && toMoveOpen && (
           <div className="flex flex-col z-10 absolute lg:hidden right-8 top-2 text-xs border rounded bg-neutral-800 border-neutral-700">
-            {buttons
-              ?.filter((button) => card?.column !== button?.column)
-              ?.map(({ title, headingColor, column }, index) => (
-                <button
-                  key={index}
-                  onClick={()=>handleMove(column)}
-                  className={`border-${headingColor}-800/80 bg-${headingColor}-800/20 text-${headingColor}-500/80
+            {columns?.map(({ title, headingColor, column: col }, index) => (
+              column !== col &&
+              <button
+                key={index}
+                onClick={() => handleMove(col)}
+                className={`border-${headingColor}-800/80 bg-${headingColor}-800/20 text-${headingColor}-500/80
                 px-3 py-2 flex items-center capitalize transition-colors hover:border-${headingColor}-800 hover:text-${headingColor}-500`}
-                >
-                  {title}
-                </button>
-              ))}
+              >
+                {title}
+              </button>
+            ))}
           </div>
         )}
       </motion.div>
