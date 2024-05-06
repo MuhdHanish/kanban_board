@@ -1,7 +1,23 @@
 {
   "name": "kanban_board",
+  "author": "MuhdHanish",
+  "description": "This is a dynamic and interactive Kanban board built with Next.js, Typescript, Tailwind CSS and Framer Motion.",
   "version": "0.1.0",
   "private": true,
+  "keywords": [
+    "Kanban",
+    "Board",
+    "Next.js",
+    "Typescript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Project Management",
+    "Workflow Management"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MuhdHanish/kanban_board.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
