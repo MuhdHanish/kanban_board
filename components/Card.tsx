@@ -1,22 +1,21 @@
 import { TCardProps, TColumnProps } from "@/types";
 import { motion } from "framer-motion";
 import { DropIndicator } from "./DropIndicator";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { VscArrowSmallRight } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-
-const buttons: Omit<TColumnProps, "cards" | "setCards">[] = [
-  { title: "Backlog", column: "backlog", headingColor: "red" },
-  { title: "Todo", column: "todo", headingColor: "yellow" },
-  { title: "Active", column: "active", headingColor: "blue" },
-  { title: "Completed", column: "completed", headingColor: "emerald" },
-];
 
 export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
   const { id, title, column } = card;
   const [menuOpen, setMenuOpen] = useState(false);
   const [toMoveOpen, setToMoveOpen] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const buttons: Omit<TColumnProps, "cards" | "setCards">[] = useMemo(()=>[
+    { title: 'Backlog', column: 'backlog', headingColor: 'red' },
+    { title: 'Todo', column: 'todo', headingColor: 'yellow' },
+    { title: 'Active', column: 'active', headingColor: 'blue' },
+    { title: 'Completed', column: 'completed', headingColor: 'emerald' },
+  ],[]);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (cardRef.current && !cardRef.current?.contains(event?.target as Node)) {
