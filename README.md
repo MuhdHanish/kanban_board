@@ -4,7 +4,7 @@
 This is a dynamic and interactive Kanban board built with Next.js, Tailwind CSS, and Framer Motion. It allows users to manage their tasks and workflows efficiently in a visually appealing interface.
 
 ## Features
-- Drag-and-drop functionality for moving tasks between different stages (backlog, todo, active, completed).
+- Drag-and-drop functionality for moving tasks between different stages (backlog, todo, active, completed). 
 - Responsive design that works seamlessly across devices of all sizes.
 - Customizable task cards with options for adding/deleting tasks.
 - **"Burbareel" component**: On large screen devices, you can delete tasks by dragging them into the "burbareel" component.
@@ -36,7 +36,8 @@ To get started with the Kanban Board, follow these steps:
 To use the Kanban Board, follow these guidelines:
 - Create new tasks by clicking the "Add Task" button.
 - Drag tasks between different columns (backlog, todo, active, completed) to update their status.
-- On medium screen devices delete tasks by clicking the delete button on the task card. On large screen devices, you can delete tasks by dragging them into the "burbareel" component. Simply drag a task card over to the designated area, and it will be deleted automatically. 
+- On medium screen devices for moving tasks between columns, select the desired column from the dropdown menu on the task card and delete tasks by clicking the delete button on the task card. 
+- On large screen devices Drag-and-drop functionality for moving tasks between different stages and you can delete tasks by dragging them into the "burbareel" component. Simply drag a task card over to the designated area, and it will be deleted automatically. 
 
 ## Feedback
 
