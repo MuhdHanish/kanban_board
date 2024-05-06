@@ -1,9 +1,10 @@
 import { Dispatch, SetStateAction, MouseEvent, TouchEvent, PointerEvent, DragEvent } from "react";
 
+export type TColumn = "backlog" | "todo" | "active" | "completed";
 export type TColumnProps = {
   title: string;
   headingColor: string;
-  column: "backlog" | "todo" | "active" | "completed";
+  column: TColumn;
   cards: TCard[];
   setCards: Dispatch<SetStateAction<TCard[]>>;
 };
