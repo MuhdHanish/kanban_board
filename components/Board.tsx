@@ -27,21 +27,21 @@ export const Board = () => {
       <Column
         title="Todo"
         column="todo"
-        headingColor="text-yellow-200"
+        headingColor="text-yellow-400"
         cards={cards}
         setCards={setCards}
       />
       <Column
         title="Active"
         column="active"
-        headingColor="text-blue-200"
+        headingColor="text-blue-400"
         cards={cards}
         setCards={setCards}
       />
       <Column
         title="Completed"
         column="completed"
-        headingColor="text-emerald-200"
+        headingColor="text-emerald-400"
         cards={cards}
         setCards={setCards}
       />

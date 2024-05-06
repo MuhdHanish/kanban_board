@@ -1,17 +1,27 @@
-import { TCardProps } from "@/types";
+import { TCardProps, TColumnProps } from "@/types";
 import { motion } from "framer-motion";
 import { DropIndicator } from "./DropIndicator";
 import { useEffect, useRef, useState } from "react";
+import { VscArrowSmallRight } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+
+const buttons: Omit<TColumnProps, "cards" | "setCards">[] = [
+  { title: "Backlog", column: "backlog", headingColor: "red" },
+  { title: "Todo", column: "todo", headingColor: "yellow" },
+  { title: "Active", column: "active", headingColor: "blue" },
+  { title: "Completed", column: "completed", headingColor: "emerald" },
+];
 
 export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
   const { id, title, column } = card;
-  const [open, setOpen] = useState(false);
-   const cardRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [toMoveOpen, setToMoveOpen] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (cardRef.current && !cardRef.current?.contains(event?.target as Node)) {
-        setOpen(false);
+        setMenuOpen(false);
+        setToMoveOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -24,6 +34,15 @@ export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
     if (!confirm) return;
     setCards(prev => prev?.filter(card => card?.id !== id));
   }
+  const handleMoveOpen = () => {
+    setMenuOpen(false);
+    setToMoveOpen(true);
+  }
+  const handleMove = (column: "backlog" | "todo" | "active" | "completed") => {
+    const newCard = { ...card, column };
+    setCards((prev) => prev?.filter((card) => card?.id !== id));
+    setCards((prev) => [...prev, newCard]);
+  };
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
@@ -37,18 +56,44 @@ export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
       >
         <p className="text-sm text-neutral-100 break-words">{title}</p>
         <BiDotsVerticalRounded
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => setMenuOpen((prev) => !prev)}
           className="absolute lg:hidden right-1 top-2 text-lg text-neutral-100 cursor-pointer"
         />
-        {open && (
-          <button
-            onClick={handleDelete}
-            className="absolute lg:hidden right-8 top-2 text-xs border
+        {menuOpen && (
+          <div className="flex flex-col z-10 absolute lg:hidden right-8 top-2 text-xs border rounded bg-neutral-800 border-neutral-700">
+            <button
+              onClick={handleMoveOpen}
+              className="
+            border-emerald-800/80 bg-emerald-800/20 text-emerald-500/80
+            px-3 py-2 flex items-center transition-colors hover:border-emerald-800 hover:text-emerald-500"
+            >
+              Move <VscArrowSmallRight className="text-base" />
+            </button>
+            <button
+              onClick={handleDelete}
+              className="
             border-red-800/80 bg-red-800/20 text-red-500/80
-            px-3 py-1.5 flex items-center rounded transition-colors hover:border-red-800 hover:text-red-500"
-          >
-            Delete
-          </button>
+            px-3 py-2 flex items-center transition-colors hover:border-red-800 hover:text-red-500"
+            >
+              Delete
+            </button>
+          </div>
+        )}
+        {buttons && buttons?.length > 0 && toMoveOpen && (
+          <div className="flex flex-col z-10 absolute lg:hidden right-8 top-2 text-xs border rounded bg-neutral-800 border-neutral-700">
+            {buttons
+              ?.filter((button) => card?.column !== button?.column)
+              ?.map(({ title, headingColor, column }, index) => (
+                <button
+                  key={index}
+                  onClick={()=>handleMove(column)}
+                  className={`border-${headingColor}-800/80 bg-${headingColor}-800/20 text-${headingColor}-500/80
+                px-3 py-2 flex items-center capitalize transition-colors hover:border-${headingColor}-800 hover:text-${headingColor}-500`}
+                >
+                  {title}
+                </button>
+              ))}
+          </div>
         )}
       </motion.div>
     </>
