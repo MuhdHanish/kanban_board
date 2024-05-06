@@ -12,19 +12,19 @@ This is a dynamic and interactive Kanban board built with Next.js, Tailwind CSS,
 ## Getting Started
 To get started with the Kanban Board, follow these steps:
 
-1. **Clone this repository**:
+1. Clone this repository:
    ```bash
    git clone https://github.com/MuhdHanish/kanban_board.git
 
-2. **Navigate to the project directory**:
+2. Navigate to the project directory:
    ```bash
    cd kanban_board
  
-3. **Install dependencies by running**: `npm install` or `yarn install`
+3. Install dependencies by running: `npm install` or `yarn install`
 
-4. **Start the Server**: `npm run dev` or `yarn dev`
+4. Start the Server `npm run dev` or `yarn dev`
    
-5. **Access the Application**: Open your browser and go to http://localhost:3000 to access the application.
+5. Access the Application: Open your browser and go to http://localhost:3000 to access the application.
 
 ## Technologies Used
 - Next.js: A React framework for building server-side rendered and static web applications.
