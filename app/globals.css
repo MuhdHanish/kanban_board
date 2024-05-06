@@ -1,3 +1,32 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --tw-bg-opacity: 1;
+}
+
+*::-webkit-scrollbar {
+  width: 0.2em;
+  height: 0.2em;
+}
+
+@media screen and (max-width: 2) {
+  *::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+*::-webkit-scrollbar-track {
+  display: none;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgb(167 139 250 / var(--tw-bg-opacity));
+  border-radius: 0.8em;
+}
+
+*::-webkit-scrollbar-track {
+  position: absolute;
+  top: 0;
+}
