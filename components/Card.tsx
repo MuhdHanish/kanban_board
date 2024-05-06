@@ -5,13 +5,6 @@ import { useEffect, useRef, useState } from "react";
 import { VscArrowSmallRight } from "react-icons/vsc";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
-const columns: Omit<TColumnProps, "cards" | "setCards">[] = [
-  { title: "Backlog", column: "backlog", headingColor: "red" },
-  { title: "Todo", column: "todo", headingColor: "yellow" },
-  { title: "Active", column: "active", headingColor: "blue" },
-  { title: "Completed", column: "completed", headingColor: "emerald" },
-];
-
 export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
   const { id, title, column } = card;
   const [menuOpen, setMenuOpen] = useState(false);
@@ -82,19 +75,36 @@ export const Card = ({ card, hanldeDragStart, setCards }: TCardProps) => {
             </button>
           </div>
         )}
-        {columns && columns.length > 0 && toMoveOpen && (
+        {toMoveOpen && (
           <div className="flex flex-col z-10 absolute lg:hidden right-8 top-2 text-xs border rounded bg-neutral-800 border-neutral-700">
-            {columns?.map(({ title, headingColor, column: col }, index) => (
-              column !== col &&
-              <button
-                key={index}
-                onClick={() => handleMove(col)}
-                className={`border-${headingColor}-800/80 bg-${headingColor}-800/20 text-${headingColor}-500/80
-                px-3 py-2 flex items-center capitalize transition-colors hover:border-${headingColor}-800 hover:text-${headingColor}-500`}
-              >
-                {title}
-              </button>
-            ))}
+            {column !== "backlog" && <button
+              onClick={() => handleMove("backlog")}
+              className={`border-red-800/80 bg-red-800/20 text-red-500/80
+                px-3 py-2 flex items-center capitalize transition-colors hover:border-red-800 hover:text-red-500`}
+            >
+              Backlog
+            </button>}
+            {column !== "todo" && <button
+              onClick={() => handleMove("todo")}
+              className={`border-yellow-800/80 bg-yellow-800/20 text-yellow-500/80
+                px-3 py-2 flex items-center capitalize transition-colors hover:border-yellow-800 hover:text-yellow-500`}
+            >
+              Todo
+            </button>}
+            {column !== "active" && <button
+              onClick={() => handleMove("active")}
+              className={`border-blue-800/80 bg-blue-800/20 text-blue-500/80
+                px-3 py-2 flex items-center capitalize transition-colors hover:border-blue-800 hover:text-blue-500`}
+            >
+              Active
+            </button>}
+            {column !== "completed" && <button
+              onClick={() => handleMove("completed")}
+              className={`border-emerald-800/80 bg-emerald-800/20 text-emerald-500/80
+                px-3 py-2 flex items-center capitalize transition-colors hover:border-emerald-800 hover:text-emerald-500`}
+            >
+              Completed
+            </button>}
           </div>
         )}
       </motion.div>
